@@ -1,4 +1,7 @@
 from flask import Flask
+import json
+import urllib
+from urllib import request
 
 app = Flask(__name__)
 
@@ -13,7 +16,7 @@ BASE_URL = 'https://api.telegram.org/bot' + BOT_TOKEN + '/'
 @app.route('/bot/set_webhook')
 def set_webhook():
     url = request.args.get('url', '')
-    return json.dumps(json.load(urllib2.urlopen(BASE_URL + 'setWebhook', urllib.urlencode({'url': url}))))
+    return json.dumps(json.load(urllib.urlopen(BASE_URL + 'setWebhook', urllib.urlencode({'url': url}))))
 
 if __name__ == '__main__':
-    app.run()
+    app.run('0.0.0.0')
